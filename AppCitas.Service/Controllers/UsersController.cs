@@ -2,6 +2,7 @@
 using AppCitas.Service.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SQLitePCL;
 
 namespace AppCitas.Service.Controllers
@@ -20,21 +21,21 @@ namespace AppCitas.Service.Controllers
         //GET api/users
 
         [HttpGet] //Sirve para utilizar un verbo get
-        public ActionResult<IEnumerable<AppUser>> GetUsers() //IEnumerable trae un arreglo enumerado
+        public  async Task<ActionResult<IEnumerable<AppUser>>> GetUsers() //IEnumerable trae un arreglo enumerado
         {
-            var users = _context.Users.ToList();
+            //var users = _context.Users.ToList();
 
-            return users;
+            return await _context.Users.ToListAsync();
 
         }
 
         //GET api/users/{id}
         [HttpGet("{id}")] //Sirve para utilizar un verbo get
-        public ActionResult<AppUser> GetUsersById(int id) //IEnumerable trae un arreglo enumerado
+        public async Task<ActionResult<AppUser>> GetUsersById(int id) //IEnumerable trae un arreglo enumerado
         {
-            var users = _context.Users.Find(id);
+            //var users = _context.Users.Find(id);
 
-            return users;
+            return  await _context.Users.FindAsync(id);
 
         }
 
