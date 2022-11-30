@@ -1,9 +1,12 @@
 ﻿using AppCitas.Service.DTOs;
+using AppCitas.Service.Interfaces;
 using AppCitas.UnitTests.Helpers;
+using Moq;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Net;
 using System.Net.Http;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
@@ -19,6 +22,8 @@ namespace AppCitas.UnitTests.Test
         private string registerObject = String.Empty;
         private string loginObjetct = String.Empty;
         private HttpContent? httpContent;
+
+               
 
         public AccountControllerTests()
         {

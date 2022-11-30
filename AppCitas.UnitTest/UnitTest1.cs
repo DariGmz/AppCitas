@@ -1,41 +1,25 @@
 using AppCitas.Service.Controllers;
 using AppCitas.Service.Entities;
 using AppCitas.Service.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using Xunit.Sdk;
 
 namespace AppCitas.UnitTest
 {
-    [TestClass]
     public class UnitTest1
     {
-        Mock<IUserRepository> mockUserRespository;
-        Mock<ILikesRepository> mockLikeRespository;
+        private string apiRoute = "api/likes";
+        private readonly HttpClient httpClient;
+        private HttpResponseMessage? HttpResponse;
+        private string requestUri = string.Empty;
+        private string registerObject = string.Empty;
+        private HttpContent? httpContent;
 
-        private LikesController likesControllerUt;
-
-        [TestInitialize]
-        public void RunBeforeEachTest()
+        public UnitTest1()
         {
-            this.mockUserRespository = new Mock<IUserRepository>();
-            this.mockLikeRespository = new Mock<ILikesRepository>();
+            _client = Test
         }
-
-        [TestMethod]
-        public void AddLike__RunSuccesful()
-        {
-            // Arrange
-            this.likesControllerUt = new LikesController(this.mockUserRespository.Object, this.mockLikeRespository.Object);
-            AppUser appUser = new AppUser() { Id = 1, City = "ags", Gender = "M", UserName = "test" }; 
-            this.mockUserRespository.Setup(method => method.GetUserByUsernameAsync(It.IsAny<string>())).ThrowsAsync(new Exception("Error"));
-            this.mockLikeRespository.Setup(method => method.GetUserWithLikes(It.IsAny<int>())).ReturnsAsync(appUser);
-
-            // Act
-            this.likesControllerUt.AddLike(It.IsAny<string>());
-
-            // Assert
-            this.mockUserRespository.Verify(method => method.SaveAllAsync(), Times.Never);
-        }
-
     }
 }
