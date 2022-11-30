@@ -79,44 +79,44 @@ namespace AppCitas.UnitTests.Tests
             Assert.Equal(Enum.Parse<HttpStatusCode>(statusCode, true), httpResponse.StatusCode);
         }
 
-        [Theory]
-        [InlineData("OK", "lisa", "Pa$$w0rd")]
-        public async Task GetUserLikes__RunSuccesfuly(string statusCode, string username, string password)
-        {
-            // Arrange
-            this.requestUri = $"{apiRoute}";
-            var likesParams = new LikesParams()
-            {
-                UserId = 1,
-                Predicate = "test"
-            };
+        //[Theory]
+        //[InlineData("OK", "lisa", "Pa$$w0rd")]
+        //public async Task GetUserLikes__RunSuccesfuly(string statusCode, string username, string password)
+        //{
+        //    // Arrange
+        //    this.requestUri = $"{apiRoute}";
+        //    var likesParams = new LikesParams()
+        //    {
+        //        UserId = 1,
+        //        Predicate = "test"
+        //    };
 
-            var requestUrl = "api/account/login";
-            var loginDto = new LoginDto
-            {
-                Username = username,
-                Password = password
-            };
+        //    var requestUrl = "api/account/login";
+        //    var loginDto = new LoginDto
+        //    {
+        //        Username = username,
+        //        Password = password
+        //    };
 
-            loginObjetct = GetLoginObject(loginDto);
-            httpContent = GetHttpContent(loginObjetct);
+        //    loginObjetct = GetLoginObject(loginDto);
+        //    httpContent = GetHttpContent(loginObjetct);
 
-            httpResponse = await _client.PostAsync(requestUrl, httpContent);
-            var reponse = await httpResponse.Content.ReadAsStringAsync();
-            var userDto = JsonSerializer.Deserialize<UserDto>(reponse, new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            });
+        //    httpResponse = await _client.PostAsync(requestUrl, httpContent);
+        //    var reponse = await httpResponse.Content.ReadAsStringAsync();
+        //    var userDto = JsonSerializer.Deserialize<UserDto>(reponse, new JsonSerializerOptions
+        //    {
+        //        PropertyNameCaseInsensitive = true
+        //    });
 
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", userDto.Token);
+        //    _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", userDto.Token);
 
 
-            // Act
-            this.httpResponse = await _client.GetAsync(this.requestUri);
+        //    // Act
+        //    this.httpResponse = await _client.GetAsync(this.requestUri);
 
-            // Assert
-            Assert.Equal(Enum.Parse<HttpStatusCode>(statusCode, true), httpResponse.StatusCode);
-        }
+        //    // Assert
+        //    Assert.Equal(Enum.Parse<HttpStatusCode>(statusCode, true), httpResponse.StatusCode);
+        //}
 
         #region PrivateMethod
         private static string GetRegisterObject(LikesParams registerDto)
