@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppCitas.Service.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220905125612_InitialCreate")]
+    [Migration("20220905123810_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

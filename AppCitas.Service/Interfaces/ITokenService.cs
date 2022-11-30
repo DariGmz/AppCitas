@@ -1,5 +1,4 @@
-﻿
-using AppCitas.Service.Entities;
+﻿using AppCitas.Service.Entities;
 
 namespace AppCitas.Service.Interfaces;
 

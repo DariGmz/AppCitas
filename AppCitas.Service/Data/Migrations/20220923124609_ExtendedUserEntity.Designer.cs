@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppCitas.Service.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220925234601_ExtendedUserEntity")]
+    [Migration("20220923124609_ExtendedUserEntity")]
     partial class ExtendedUserEntity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -75,7 +75,7 @@ namespace AppCitas.Service.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("AppUserId")
+                    b.Property<int>("AppUserId")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("IsMain")
@@ -91,14 +91,18 @@ namespace AppCitas.Service.Data.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.ToTable("Photo");
+                    b.ToTable("Photos");
                 });
 
             modelBuilder.Entity("AppCitas.Service.Entities.Photo", b =>
                 {
-                    b.HasOne("AppCitas.Service.Entities.AppUser", null)
+                    b.HasOne("AppCitas.Service.Entities.AppUser", "AppUser")
                         .WithMany("Photos")
-                        .HasForeignKey("AppUserId");
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
                 });
 
             modelBuilder.Entity("AppCitas.Service.Entities.AppUser", b =>
