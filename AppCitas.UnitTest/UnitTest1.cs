@@ -31,7 +31,7 @@ namespace AppCitas.UnitTest
             this.mockLikeRespository.Setup(method => method.GetUserWithLikes(It.IsAny<int>())).ReturnsAsync(appUser);
 
             // Act
-            this.likesControllerUt.AddLike(It.IsAny<string>()).Start();
+            this.likesControllerUt.AddLike(It.IsAny<string>());
 
             // Assert
             this.mockUserRespository.Verify(method => method.SaveAllAsync(), Times.Never);
