@@ -1,11 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace AppCitas.Service.Data.Migrations
+namespace API.Data.Migrations
 {
+    /// <inheritdoc />
     public partial class ExtendedUserEntity : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
@@ -27,12 +30,12 @@ namespace AppCitas.Service.Data.Migrations
                 nullable: false,
                 defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
 
-            migrationBuilder.AddColumn<DateTime>(
+            migrationBuilder.AddColumn<DateOnly>(
                 name: "DateOfBirth",
                 table: "Users",
                 type: "TEXT",
                 nullable: false,
-                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
+                defaultValue: new DateOnly(1, 1, 1));
 
             migrationBuilder.AddColumn<string>(
                 name: "Gender",
@@ -99,6 +102,7 @@ namespace AppCitas.Service.Data.Migrations
                 column: "AppUserId");
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
